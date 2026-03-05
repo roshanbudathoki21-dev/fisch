@@ -1059,17 +1059,28 @@ var paypalRendered = false;
 
 // ── Stripe appearance ────────────────────────────────────────────────────────
 var stripeAppearance = {
-  theme: 'night',
+  theme: 'stripe',
   variables: {
-    colorPrimary: '#f59e0b',
-    borderRadius: '8px',
-    fontFamily: 'Inter, sans-serif',
-    fontSizeBase: '15px'
+    colorPrimary:       '#f97316',
+    colorBackground:    '#ffffff',
+    colorText:          '#1c1409',
+    colorDanger:        '#dc2626',
+    colorTextSecondary: '#78614a',
+    colorTextPlaceholder:'#a38060',
+    borderRadius:       '10px',
+    fontFamily:         'Nunito, sans-serif',
+    fontSizeBase:       '15px',
+    spacingUnit:        '4px'
   },
   rules: {
-    '.Label': { fontWeight: '700', fontSize: '13px', color: '#e5e7eb' },
-    '.Input':  { border: '1px solid #2a2218', boxShadow: 'none' },
-    '.Input:focus': { border: '1px solid rgba(245,158,11,.5)', boxShadow: '0 0 0 2px rgba(245,158,11,.15)' }
+    '.Label':      { fontWeight: '800', fontSize: '13px', color: '#78614a', marginBottom: '5px' },
+    '.Input':      { border: '2px solid #f5bc6e', boxShadow: 'none', backgroundColor: '#ffffff', color: '#1c1409', fontWeight: '700' },
+    '.Input:focus':{ border: '2px solid #f97316', boxShadow: '0 0 0 3px rgba(249,115,22,.12)' },
+    '.Tab':        { border: '2px solid #f5bc6e', boxShadow: 'none', backgroundColor: '#fffbf2' },
+    '.Tab:hover':  { backgroundColor: '#fff8e7' },
+    '.Tab--selected': { border: '2px solid #f97316', backgroundColor: '#fff7e6', boxShadow: '2px 2px 0 #f97316' },
+    '.TabIcon--selected': { fill: '#f97316' },
+    '.TabLabel--selected': { color: '#c2410c', fontWeight: '900' }
   }
 };
 
