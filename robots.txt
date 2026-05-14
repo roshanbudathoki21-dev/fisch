@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brainrotshop.fun/sitemap.xml
