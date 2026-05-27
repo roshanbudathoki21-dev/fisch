@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en" style="background:#000;color:#fff;">
+<head>
+<style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}html,body{background:#000!important;color:#fff!important;margin:0;padding:0;}#bc-loader{z-index:2147483647!important;position:fixed!important;}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>BloxCartel — Pick Your Game</title>
+<meta name="description" content="BloxCartel — The #1 Roblox item marketplace. Sailor Piece, Attack on Titan Revolution and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#000;--surface:#0a0a0a;--card:#0d0d0d;--border:#1a1a1a;--accent:#2563eb;--accent-h:#3b82f6;--accent-dark:#1d4ed8;--text:#fff;--text2:#a0a0a0;--muted:#888;--green:#22c55e;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+#bc-loader{position:fixed;inset:0;z-index:99999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s ease;}
+#bc-loader .bc-loader-logo{font-size:2.2rem;font-weight:900;letter-spacing:-1px;color:#fff;margin-bottom:24px;}
+#bc-loader .bc-loader-logo span{color:var(--accent);}
+#bc-loader .loader-bar-wrap{width:180px;height:4px;background:#1a1a1a;border-radius:99px;overflow:hidden;}
+#bc-loader .loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-h));border-radius:99px;transition:width 0.9s cubic-bezier(.4,0,.2,1);}
+#bc-loader.done{opacity:0;pointer-events:none;}
+#scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-h));z-index:99998;transition:width .1s linear;}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:9000;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:1.6rem;font-weight:900;letter-spacing:-1px;color:#fff;text-decoration:none;}
+.logo span{color:var(--accent);}
+.header-right{display:flex;align-items:center;gap:8px;}
+.header-icon-btn{background:none;border:1px solid var(--border);color:var(--text2);padding:8px;border-radius:8px;cursor:pointer;transition:all .2s;display:flex;align-items:center;text-decoration:none;}
+.header-icon-btn:hover{border-color:var(--accent);color:var(--accent);}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:80px 0 60px;}
+.hero-orb1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.18) 0%,transparent 70%);top:-100px;left:-100px;filter:blur(60px);pointer-events:none;}
+.hero-orb2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.14) 0%,transparent 70%);bottom:-80px;right:-80px;filter:blur(60px);pointer-events:none;}
+canvas#heroParticles{position:absolute;inset:0;width:100%;height:100%;}
+.hero-inner{position:relative;z-index:2;text-align:center;width:100%;max-width:900px;margin:0 auto;padding:0 20px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);color:var(--accent-h);font-size:.8rem;font-weight:800;padding:7px 16px;border-radius:99px;margin-bottom:28px;letter-spacing:.04em;text-transform:uppercase;}
+.hero-badge-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 1.8s infinite;}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:18px;}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent-h));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.05rem;color:var(--text2);max-width:540px;margin:0 auto 48px;line-height:1.65;}
+.game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:760px;margin:0 auto;}
+.game-card{position:relative;background:var(--card);border:2px solid var(--border);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--text);transition:all .3s cubic-bezier(.4,0,.2,1);display:block;}
+.game-card:hover{transform:translateY(-8px);}
+.game-card.sp:hover{border-color:#7c3aed;box-shadow:0 24px 60px rgba(124,58,237,.35);}
+.game-card.aot:hover{border-color:#dc2626;box-shadow:0 24px 60px rgba(220,38,38,.35);}
+.game-card-img-wrap{width:100%;height:210px;overflow:hidden;}
+.game-card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.game-card:hover .game-card-img{transform:scale(1.06);}
+.game-card-body{padding:20px;}
+.game-card-tag{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;padding:4px 10px;border-radius:99px;margin-bottom:12px;}
+.game-card.sp .game-card-tag{background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.3);}
+.game-card.aot .game-card-tag{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.3);}
+.game-card-name{font-family:'Fredoka One',cursive;font-size:1.45rem;margin-bottom:8px;}
+.game-card.sp .game-card-name{color:#c4b5fd;}
+.game-card.aot .game-card-name{color:#fca5a5;}
+.game-card-desc{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:16px;font-weight:600;}
+.game-card-btn{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:12px;font-weight:800;font-size:.88rem;}
+.game-card.sp .game-card-btn{background:linear-gradient(135deg,#6d28d9,#7c3aed);color:#fff;}
+.game-card.aot .game-card-btn{background:linear-gradient(135deg,#b91c1c,#dc2626);color:#fff;}
+.game-card-arrow{font-size:1.1rem;transition:transform .2s;}
+.game-card:hover .game-card-arrow{transform:translateX(5px);}
+.game-card-badge{position:absolute;top:14px;right:14px;font-size:.65rem;font-weight:900;padding:4px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em;color:#fff;}
+.game-card.sp .game-card-badge{background:#7c3aed;border:2px solid #6d28d9;}
+.game-card.aot .game-card-badge{background:#dc2626;border:2px solid #991b1b;}
+.trust-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;margin-top:80px;}
+.trust-grid{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:.88rem;font-weight:700;color:var(--text2);}
+.trust-num{font-size:1.1rem;font-weight:900;color:var(--text);}
+.more-section{padding:80px 0;}
+.section-head{text-align:center;margin-bottom:48px;}
+.section-head h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-1px;}
+.glow-sweep{background:linear-gradient(135deg,var(--accent),var(--accent-h));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-sub{color:var(--text2);font-size:1rem;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.coming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
+.coming-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;opacity:.55;}
+.coming-icon{font-size:2rem;margin-bottom:8px;}
+.coming-name{font-size:.88rem;font-weight:800;margin-bottom:6px;}
+.coming-badge{display:inline-block;font-size:.65rem;font-weight:900;background:var(--border);color:var(--muted);padding:3px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.05em;}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:40px 20px 24px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.footer-brand p{font-size:.79rem;color:var(--muted);line-height:1.7;margin-top:10px;max-width:200px;font-weight:600;}
+.footer-col h4{font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:12px;}
+.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:.82rem;margin-bottom:8px;font-weight:700;transition:color .15s;}
+.footer-col a:hover{color:var(--accent-h);}
+.footer-bottom{max-width:1100px;margin:16px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer-bottom span{font-size:.75rem;color:var(--muted);font-weight:600;}
+.pay-badge{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:6px;}
+#supportWidget{position:fixed;bottom:20px;right:16px;z-index:99999;display:none;flex-direction:column;align-items:flex-end;gap:6px;}
+#swPanel{display:none;width:190px;background:#0d0d0d;border:1px solid #2a1f4a;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.7);}
+.sw-row{width:100%;background:none;border:none;border-bottom:1px solid #1a1a1a;padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;color:#fff;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;}
+.sw-row:last-child{border-bottom:none;}
+.sw-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.sw-sub{display:block;font-size:.7rem;color:#888;font-weight:600;}
+#swBtn{background:#7c3aed;color:#fff;padding:10px 16px;border-radius:99px;font-weight:800;font-size:.82rem;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 4px 20px rgba(124,58,237,.5);border:2px solid #6d28d9;}
+.sw-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:blink 1.8s infinite;}
+@media(max-width:620px){.game-grid{grid-template-columns:1fr;}.hero h1{font-size:2.2rem;}.hero-sub{font-size:.92rem;}.trust-grid{gap:18px;}}
+</style>
+</head>
+<body>
+<div id="bc-loader">
+  <div class="bc-loader-logo">Blox<span>Cartel</span></div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+</div>
+<script>(function(){document.documentElement.style.overflow='hidden';var bar=document.getElementById('loaderBar'),loader=document.getElementById('bc-loader');if(!bar||!loader)return;setTimeout(function(){bar.style.width='100%';},60);setTimeout(function(){loader.classList.add('done');setTimeout(function(){loader.remove();document.documentElement.style.overflow='';document.body.style.overflow='';window._loaderDone=true;var cw=document.getElementById('supportWidget');if(cw)setTimeout(function(){cw.style.display='flex';},400);},520);},1000);})();</script>
+<div id="scroll-progress"></div>
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="logo">Blox<span>Cartel</span></a>
+      <div class="header-right">
+        <span style="display:flex;align-items:center;gap:5px;font-size:.75rem;color:#22c55e;font-weight:700;"><span style="width:7px;height:7px;border-radius:50%;background:#22c55e;border:2px solid #16a34a;display:inline-block;animation:blink 1.8s infinite;"></span>Online</span>
+        <a href="https://discord.gg/8vHzMDbBay" target="_blank" rel="noopener" class="header-icon-btn" title="Discord">
+          <svg width="16" height="13" viewBox="0 0 71 55" fill="currentColor"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.7a.2.2 0 0 0-.2.1c-.6 1.1-1.3 2.6-1.8 3.7a54 54 0 0 0-16.2 0 37.4 37.4 0 0 0-1.8-3.7.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.7-.9 32.1.3 45.4a.2.2 0 0 0 .1.1 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .2-.1 42 42 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.9a.2.2 0 0 1 0 .4 36 36 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47 47 0 0 0 3.6 5.9.2.2 0 0 0 .2.1 58.6 58.6 0 0 0 17.8-8.9.2.2 0 0 0 .1-.1c1.5-15.4-2.5-28.7-10.6-40.5a.2.2 0 0 0-.1-.1ZM23.7 37.3c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-orb1"></div><div class="hero-orb2"></div>
+  <canvas id="heroParticles"></canvas>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Trusted by 10,000+ players</div>
+    <h1>The #1 Roblox<br><em>Item Marketplace</em></h1>
+    <p class="hero-sub">Rare items, fast delivery, real grinders. Pick your game below and shop instantly.</p>
+    <div class="game-grid">
+      <a href="/sailor-piece" class="game-card sp">
+        <span class="game-card-badge">⭐ Popular</span>
+        <div class="game-card-img-wrap">
+          <img src="https://i.ibb.co/zhyfPdNS/no-Filter-1.webp" alt="Sailor Piece" class="game-card-img">
+        </div>
+        <div class="game-card-body">
+          <div class="game-card-tag">🌊 Sailor Piece</div>
+          <div class="game-card-name">Sailor Piece</div>
+          <p class="game-card-desc">Swords, melee items, rerolls, shards & more. All grinded by real players — instant trade.</p>
+          <div class="game-card-btn">Shop Sailor Piece <span class="game-card-arrow">→</span></div>
+        </div>
+      </a>
+      <a href="/aot" class="game-card aot">
+        <span class="game-card-badge">🔥 New</span>
+        <div class="game-card-img-wrap">
+          <img src="https://i.ibb.co/s98w6YHq/IMG-3242.webp" alt="Attack on Titan Revolution" class="game-card-img">
+        </div>
+        <div class="game-card-body">
+          <div class="game-card-tag">⚔️ AoT Revolution</div>
+          <div class="game-card-name">Attack on Titan Revolution</div>
+          <p class="game-card-desc">Titan serums, ODM gear, cloaks & exclusive items. Delivered fast, safe & legit.</p>
+          <div class="game-card-btn">Shop AoT Revolution <span class="game-card-arrow">→</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item"><svg width="16" height="16" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><span class="trust-num">100%</span> Safe &amp; Secure</span></div>
+      <div class="trust-item"><svg width="16" height="16" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span><span class="trust-num">Fast</span> Delivery</span></div>
+      <div class="trust-item"><svg width="16" height="16" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span><span class="trust-num">Real</span> Players Only</span></div>
+      <div class="trust-item"><svg width="16" height="16" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><span><span class="trust-num">Stripe</span> Secure Checkout</span></div>
+    </div>
+  </div>
+</div>
+<section class="more-section">
+  <div class="container">
+    <div class="section-head">
+      <h2>More Games <span class="glow-sweep">Coming Soon</span></h2>
+      <p class="section-sub">We're constantly adding new games. Request yours in our Discord.</p>
+    </div>
+    <div class="coming-grid">
+      <div class="coming-card"><div class="coming-icon">🎣</div><div class="coming-name">Fisch</div><span class="coming-badge">Coming Soon</span></div>
+      <div class="coming-card"><div class="coming-icon">🍎</div><div class="coming-name">Blox Fruits</div><span class="coming-badge">Coming Soon</span></div>
+      <div class="coming-card"><div class="coming-icon">🌊</div><div class="coming-name">Steal a Brainrot</div><span class="coming-badge">Coming Soon</span></div>
+      <div class="coming-card"><div class="coming-icon">⚔️</div><div class="coming-name">Rivals</div><span class="coming-badge">Coming Soon</span></div>
+      <div class="coming-card"><div class="coming-icon">🐾</div><div class="coming-name">Pet Simulator</div><span class="coming-badge">Coming Soon</span></div>
+      <div class="coming-card"><div class="coming-icon">🔫</div><div class="coming-name">MM2</div><span class="coming-badge">Coming Soon</span></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="/" class="logo">Blox<span>Cartel</span></a><p>The #1 marketplace for Roblox in-game items. Safe, fast, real players.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a href="/sailor-piece">Sailor Piece</a><a href="/aot">Attack on Titan Revolution</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="https://discord.gg/8vHzMDbBay" target="_blank">Discord</a><a href="/pages/faq">FAQ</a><a href="/pages/refund-policy">Refund Policy</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="/pages/terms">Terms of Service</a><a href="/pages/privacy">Privacy Policy</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 BloxCartel. Not affiliated with Roblox Corporation.</span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="pay-badge">Visa</span><span class="pay-badge">Mastercard</span><span class="pay-badge">Apple Pay</span><span class="pay-badge">Google Pay</span><span class="pay-badge">CashApp</span></div>
+  </div>
+</footer>
+<div id="supportWidget">
+  <div id="swPanel">
+    <button class="sw-row" onclick="openLiveChat()"><span class="sw-icon" style="background:#2a1a4a;">💬</span><div><span style="display:block;font-weight:700;">Live Chat</span><span class="sw-sub">Reply in minutes</span></div></button>
+    <a class="sw-row" href="https://discord.gg/8vHzMDbBay" target="_blank" rel="noopener" onclick="closeSwPanel()"><span class="sw-icon" style="background:#1a1a3a;">🎮</span><div><span style="display:block;font-weight:700;">Discord</span><span class="sw-sub">Community & support</span></div></a>
+  </div>
+  <div id="swBtn" onclick="toggleSwPanel()"><span class="sw-dot"></span>💬 Support</div>
+</div>
+<script>
+(function(){var c=document.getElementById('heroParticles');if(!c)return;var ctx=c.getContext('2d');function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}resize();window.addEventListener('resize',resize);var pts=Array.from({length:60},function(){return{x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2.5+.5,dx:(Math.random()-.5)*.3,dy:-(Math.random()*.4+.1),o:Math.random()*.6+.2};});function draw(){ctx.clearRect(0,0,c.width,c.height);pts.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(99,102,241,'+p.o+')';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.y<-5)p.y=c.height+5;if(p.x<-5)p.x=c.width+5;if(p.x>c.width+5)p.x=-5;});requestAnimationFrame(draw);}draw();})();
+(function(){var bar=document.getElementById('scroll-progress');if(!bar)return;window.addEventListener('scroll',function(){var s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});})();
+function toggleSwPanel(){var p=document.getElementById('swPanel');p.style.display=p.style.display==='block'?'none':'block';}
+function closeSwPanel(){var p=document.getElementById('swPanel');if(p)p.style.display='none';}
+function openLiveChat(){closeSwPanel();if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize();setTimeout(function(){Tawk_API.hideWidget();},100);}}
+document.addEventListener('click',function(e){var w=document.getElementById('supportWidget');if(w&&!w.contains(e.target))closeSwPanel();});
+</script>
+<script>
+var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();
+Tawk_API.onLoad=function(){Tawk_API.hideWidget();window._tawkReady=true;if(window._loaderDone){var cw=document.getElementById('supportWidget');if(cw)cw.style.display='flex';}};
+Tawk_API.onChatMinimized=function(){Tawk_API.hideWidget();};
+(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];s1.async=true;s1.src='https://embed.tawk.to/69ad2861613cc91c371e8799/1jj66bf4o';s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore(s1,s0);})();
+</script>
+</body>
+</html>
