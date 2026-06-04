@@ -1,10 +1,11 @@
 {
-  "name": "brainrotshop",
+  "name": "bloxcartel",
   "version": "1.0.0",
-  "description": "BrainrotShop server",
+  "description": "BloxCartel server",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "check": "node --check server.js"
   },
   "engines": {
     "node": ">=18.0.0"

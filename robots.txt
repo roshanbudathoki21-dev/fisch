@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bloxcartel.com/sitemap.xml
