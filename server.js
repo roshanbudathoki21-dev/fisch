@@ -10,7 +10,7 @@ app.use(cors());
 app.use((req, res, next) => {
   const host = req.headers.host || '';
   if (host.startsWith('www.')) {
-    return res.redirect(301, 'https://bloxcartel.com' + req.originalUrl);
+    return res.redirect(301, 'https://fisch-production.up.railway.app' + req.originalUrl);
   }
   next();
 });
@@ -133,7 +133,7 @@ app.get('/sitemap.xml', (req, res) => {
 // ── robots.txt ─────────────────────────────────────────────────────────────
 app.get('/robots.txt', (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
-  res.send('User-agent: *\nAllow: /\nSitemap: https://bloxcartel.com/sitemap.xml');
+  res.send('User-agent: *\nAllow: /\nSitemap: https://fisch-production.up.railway.app/sitemap.xml');
 });
 
 // (www redirect moved above routes)
